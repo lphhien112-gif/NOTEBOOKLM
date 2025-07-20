@@ -1,0 +1,38 @@
+# Framework chính cho API
+fastapi
+uvicorn[standard]
+
+# Thư viện cho việc quản lý cấu hình và định dạng dữ liệu
+pydantic
+pydantic-settings
+python-dotenv
+
+# Cần thiết cho việc xử lý tải file lên
+python-multipart
+
+# Bộ công cụ LangChain để xây dựng ứng dụng LLM
+langchain
+langchain-community
+langchain-text-splitters
+
+# Cơ sở dữ liệu vector chạy trên file
+chromadb
+
+# Mô hình embedding
+sentence-transformers
+
+# Thư viện đọc file PDF
+pypdf
+
+# Thư viện để giao tiếp với API tương thích của Ollama
+openai
+
+# Thư viện xử lý tài liệu đa năng
+unstructured
+python-docx
+
+# Thư viện để tương tác với Windows
+pywin32
+
+# Thư viện tìm kiếm từ khóa và chủ đề
+rank_bm25
