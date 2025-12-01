@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-08-11T05:36:11.068044Z",
+  "hostname": "LAPTOP-95R78J84",
+  "ip": "192.168.1.2",
+  "platform": "Windows",
+  "platform_release": "11",
+  "platform_version": "10.0.26100",
+  "cpu": {
+    "brand_raw": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "arch": "AMD64",
+    "logical_cpus": 16,
+    "physical_cores": 12
+  },
+  "ram": {
+    "total_bytes": 16892026880,
+    "total_gb": 15.73,
+    "modules_info": [
+      "LAPTOP-95R78J84,BANK 0,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000",
+      "LAPTOP-95R78J84,BANK 1,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000",
+      "LAPTOP-95R78J84,BANK 2,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000",
+      "LAPTOP-95R78J84,BANK 3,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000",
+      "LAPTOP-95R78J84,BANK 0,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000",
+      "LAPTOP-95R78J84,BANK 1,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000",
+      "LAPTOP-95R78J84,BANK 2,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000",
+      "LAPTOP-95R78J84,BANK 3,2147483648,Samsung,K3LKBKB@BM-MGCP     ,00000000"
+    ]
+  },
+  "disks": [
+    {
+      "raw": "LAPTOP-95R78J84,KBG50ZNT512G LS KIOXIA,8CE3_8E10_0096_9C63.,512105932800"
+    }
+  ],
+  "gpus": []
+}

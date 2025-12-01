@@ -7,7 +7,7 @@ from ..core.config import settings
 from .vector_store import VectorStoreManager
 
 class RAGPipeline:
-    _instance = None
+    _instance = None # Singleton instance
 
     def __new__(cls, vector_store_manager: VectorStoreManager):
         if cls._instance is None:

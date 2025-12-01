@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+eggs/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+.env
+
+# Byte-compiled / optimized / DLL files
+*.so
+
+# VS Code
+.vscode/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Frontend build artifacts
+frontend/build/
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Data, databases and large artifacts
+data/
+vector_store/
+chroma.sqlite3
+keyword_index.json
+state.json
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Environment files
+.env.local
+.env.*.local
+
+# Python distribution
+*.egg
+*.egg-info
+dist/
+build/
+

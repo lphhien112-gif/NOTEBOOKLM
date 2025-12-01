@@ -15,7 +15,7 @@ class VectorStoreManager:
     Bao gồm cả Vector Store (ChromaDB) và Keyword Store (BM25).
     Sử dụng mẫu Singleton để đảm bảo chỉ có một instance được tạo ra.
     """
-    _instance = None
+    _instance = None 
 
     def __new__(cls):
         if cls._instance is None:
