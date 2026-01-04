@@ -1,4 +1,4 @@
-# 📚 NotebookLM Clone - Chat với Tài liệu (RAG)
+# 📚 NotebookLM - Chat với Tài liệu (RAG)
 
 Ứng dụng Full-stack cho phép người dùng tải lên tài liệu (PDF, Word...) và trò chuyện/hỏi đáp với nội dung tài liệu đó sử dụng công nghệ RAG (Retrieval-Augmented Generation).
 
