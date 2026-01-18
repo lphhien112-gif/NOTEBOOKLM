@@ -27,8 +27,7 @@ Làm theo các bước sau để chạy dự án trên máy của bạn:
 
 ### 1. Clone dự án
 ```bash
-git clone [https://github.com/MRzMuxRom/LearnEnglish.git](https://github.com/MRzMuxRom/LearnEnglish.git)
-cd LearnEnglish
+git clone https://github.com/lphhien112-gif/NOTEBOOKLM.git
 ```
 
 ### 2. Cài đặt Backend
