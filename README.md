@@ -1,90 +1,112 @@
-# 📚 NotebookLM - Chat với Tài liệu (RAG)
+# 📚 NotebookLM - Offline RAG Document Chat
 
-Ứng dụng Full-stack cho phép người dùng tải lên tài liệu (PDF, Word...) và trò chuyện/hỏi đáp với nội dung tài liệu đó sử dụng công nghệ RAG (Retrieval-Augmented Generation).
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
+![React: 18](https://img.shields.io/badge/React-18-61dafb.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg)
 
-## 🚀 Tính năng chính
+A full-stack application that allows users to upload documents (PDF, DOCX, TXT) and interact with them using Retrieval-Augmented Generation (RAG). By leveraging local LLMs (via Ollama) and an embedded vector database, this application ensures complete data privacy while providing intelligent querying capabilities.
 
-- **Quản lý tài liệu:** Tải lên và lưu trữ các file tài liệu (.pdf, .docx, .txt).
-- **Chat thông minh:** Hỏi đáp ngữ cảnh dựa trên nội dung tài liệu đã tải lên.
-- **Xử lý ngôn ngữ tự nhiên:** Sử dụng mô hình LLM để tóm tắt và trích xuất thông tin.
-- **Giao diện thân thiện:** Thiết kế hiện đại với React & Tailwind CSS.
+## 🚀 Features
 
-## 🛠️ Công nghệ sử dụng
+- **Document Management:** Securely upload, store, and process multiple document formats.
+- **Intelligent Contextual Chat:** Q&A based entirely on the contents of your uploaded documents.
+- **Advanced NLP Tasks:** Generate summaries, extract keywords, and automatically formulate review questions.
+- **Hybrid Search Engine:** Combines Semantic Vector Search (ChromaDB) and Keyword Search (BM25) with re-ranking for superior retrieval accuracy.
+- **Privacy First:** Designed to work entirely offline with local LLMs (Ollama) so your data never leaves your machine.
+- **Modern User Interface:** Responsive, user-friendly frontend built with React and Tailwind CSS.
+
+## 🛠️ Technology Stack
 
 ### Frontend
-- **React.js**: Thư viện UI chính.
-- **Tailwind CSS**: Styling giao diện.
-- **Axios**: Gọi API.
+- **React.js** - UI Component Library
+- **Tailwind CSS** - Utility-first styling
+- **Axios** - HTTP client for API communication
+- **React Hot Toast** - Elegant UI notifications
 
 ### Backend
-- **Python & FastAPI**: Xây dựng RESTful API hiệu năng cao.
-- **ChromaDB**: Vector Database để lưu trữ và truy vấn ngữ nghĩa.
-- **RAG Pipeline**: Xử lý phân tích văn bản (Document Parser) và tìm kiếm (Retrieval).
+- **Python & FastAPI** - High-performance asynchronous RESTful API
+- **ChromaDB** - Embedded vector database for semantic search
+- **Sentence-Transformers** - Embeddings generation
+- **Rank-BM25** - Keyword-based document retrieval
+- **LangChain** - Framework for document parsing & chunking
 
-## ⚙️ Cài đặt và Chạy thử (Local)
+## ⚙️ Local Development Setup
 
-Làm theo các bước sau để chạy dự án trên máy của bạn:
+Follow these steps to run the project locally on your machine.
 
-### 1. Clone dự án
+### 1. Prerequisites
+- [Python 3.10+](https://www.python.org/)
+- [Node.js 18+](https://nodejs.org/)
+- [Ollama](https://ollama.ai/) installed and running locally. We recommend pulling a model like `llama3` or `mistral`. (e.g., `ollama pull mistral`)
+
+### 2. Clone the Repository
 ```bash
 git clone https://github.com/lphhien112-gif/NOTEBOOKLM.git
+cd NOTEBOOKLM
 ```
 
-### 2. Cài đặt Backend
+### 3. Backend Setup
+Navigate to the backend directory and set up the Python environment:
 ```bash
 cd backend
-# Tạo môi trường ảo (Khuyên dùng)
-python -m venv venv
-# Kích hoạt môi trường:
-# Windows: venv\Scripts\activate
-# Mac/Linux: source venv/bin/activate
 
-# Cài đặt thư viện
+# Create a virtual environment
+python -m venv venv
+
+# Activate the environment:
+# On Windows:
+venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-# Cấu hình biến môi trường
-# Tạo file .env và điền API KEY của bạn vào (ví dụ: OPENAI_API_KEY=...)
-```
-Chạy server backend:
-```bash
+# Start the FastAPI server
 uvicorn app.main:app --reload
 ```
-*Backend sẽ chạy tại: http://localhost:8000*
+*The backend API will be available at: `http://localhost:8000` (Access the Swagger UI at `/docs`)*
 
-### 3. Cài đặt Frontend
-Mở một terminal mới:
+### 4. Frontend Setup
+Open a new terminal session, navigate to the frontend directory:
 ```bash
 cd frontend
-# Cài đặt gói phụ thuộc
+
+# Install package dependencies
 npm install
 
-# Chạy ứng dụng
+# Start the development server
 npm start
 ```
-*Frontend sẽ chạy tại: http://localhost:3000*
+*The React application will be available at: `http://localhost:3000`*
 
-## 📂 Cấu trúc dự án
+## 🐳 Docker Deployment
 
-```text
-NOTEBOOKLM/
-├── backend/            # Mã nguồn phía Server (Python/FastAPI)
-│   ├── app/
-│   │   ├── api/        # Các API Endpoint (v1)
-│   │   ├── core/       # Cấu hình hệ thống (Config)
-│   │   ├── services/   # Logic xử lý (RAG, Vector Store, Parser)
-│   │   └── main.py     # File khởi chạy
-│   └── requirements.txt
-├── frontend/           # Mã nguồn phía Client (ReactJS)
-│   ├── src/
-│   │   ├── components/ # Các thành phần UI (ChatWindow, FileUploader...)
-│   │   ├── pages/      # Các trang chính
-│   │   └── api/        # Cấu hình gọi API
-│   └── tailwind.config.js
-└── data/               # Nơi lưu trữ Database Vector & File tải lên
+For a standardized, production-ready setup, orchestrate the entire stack using Docker Compose. Make sure Docker is running on your machine.
+
+```bash
+# Build and start all containers in detached mode
+docker-compose up -d --build
 ```
+- **Frontend** UI will be accessible on port `3000`
+- **Backend API** will be accessible on port `8000`
 
-## 🤝 Đóng góp (Contributing)
-Mọi đóng góp đều được hoan nghênh. Vui lòng tạo Pull Request hoặc mở Issue để thảo luận.
+*Note: You may need to configure Ollama networking (e.g., `OLLAMA_HOST=0.0.0.0`) so the Docker containers can reach your local Ollama instance on `host.docker.internal`.*
+
+## 📂 Project Structure
+
+To understand the core architecture and directory layout, please refer to [flow.md](./flow.md) for a detailed breakdown.
+
+## 🤝 Contributing
+
+Contributions are always welcome! 
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
 ## 📝 License
-Dự án này được phát hành dưới giấy phép MIT.
+
+Distributed under the MIT License. See `LICENSE` for more information.

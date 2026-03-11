@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: notebooklm-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./data:/app/data
+    environment:
+      - HOST=0.0.0.0
+      # Add environment variables here (e.g., OLLAMA_BASE_URL) if Ollama is hosted elsewhere
+      # - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    restart: unless-stopped
+    networks:
+      - notebooklm-network
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: notebooklm-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - notebooklm-network
+
+networks:
+  notebooklm-network:
+    driver: bridge

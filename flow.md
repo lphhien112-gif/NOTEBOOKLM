@@ -1,52 +1,60 @@
-/NOTEBOOKLM/
-├── 📁 backend/
-│   ├── 📁 app/
-│   │   ├── 📁 api/
+# Project Architecture & Flow
+
+This document outlines the standard directory tree and functional modules for the NotebookLM project.
+
+```text
+NOTEBOOKLM/
+├── backend/                  # Server-side source code (Python/FastAPI)
+│   ├── app/
+│   │   ├── api/              # API Routing Layer
 │   │   │   ├── __init__.py
 │   │   │   └── v1/
 │   │   │       ├── __init__.py
 │   │   │       ├── endpoints/
 │   │   │       │   ├── __init__.py
-│   │   │       │   ├── chat.py         # API cho hỏi-đáp RAG
-│   │   │       │   ├── documents.py    # API quản lý tài liệu (tải lên, xóa)
-│   │   │       │   └── tasks.py        # API cho các tác vụ chuyên biệt (tóm tắt, v.v.)
-│   │   │       └── schemas.py          # Định dạng dữ liệu API
-│   │   ├── 📁 core/
+│   │   │       │   ├── chat.py         # API for conversational Q&A via RAG
+│   │   │       │   ├── documents.py    # API for document operations (upload, delete)
+│   │   │       │   └── tasks.py        # API for specialized tasks (summarization, extraction)
+│   │   │       └── schemas.py          # Pydantic data validation schemas
+│   │   ├── core/             # Application Configuration Layer
 │   │   │   ├── __init__.py
-│   │   │   └── config.py               # Quản lý cấu hình tập trung
-│   │   ├── 📁 services/
+│   │   │   └── config.py               # Centralized config (Variables, Paths)
+│   │   ├── services/         # Business Logic Layer
 │   │   │   ├── __init__.py
-│   │   │   ├── rag_pipeline.py         # Logic chính: điều phối RAG và các tác vụ
-│   │   │   ├── vector_store.py         # Quản lý tìm kiếm lai (Vector + Keyword)
-│   │   │   └── document_parser.py      # Đọc và chia nhỏ nhiều loại file
-│   │   └── main.py                     # Điểm khởi động của server backend
-│   ├── .env                            # Lưu các biến môi trường
-│   ├── Dockerfile                      # <<-- Cấu hình Docker cho backend
-│   └── requirements.txt                # Danh sách các thư viện Python
+│   │   │   ├── rag_pipeline.py         # Core logic: LLM integration and RAG orchestration
+│   │   │   ├── vector_store.py         # Hybrid search engine (Vector + Keyword)
+│   │   │   └── document_parser.py      # Parses and chunks various document formats
+│   │   └── main.py                     # FastAPI application entry point
+│   ├── .env                            # Environment variables (Ignored by Git)
+│   ├── Dockerfile                      # Backend Docker container configuration
+│   └── requirements.txt                # Python package dependencies
 │
-├── 📁 data/
-│   ├── 📁 vector_store/               # Lưu trữ cơ sở dữ liệu vector (ChromaDB)
-│   ├── 📁 uploaded_docs/              # Lưu trữ các file gốc người dùng tải lên
-│   ├── keyword_index.json            # Lưu trữ chỉ mục từ khóa cho tìm kiếm lai
-│   └── state.json                    # Lưu trạng thái (ví dụ: file cuối cùng được tải lên)
+├── data/                               # Persistent Storage Directory (Ignored by Git)
+│   ├── vector_store/                   # Vector database storage (ChromaDB)
+│   ├── uploaded_docs/                  # Raw user-uploaded source documents
+│   ├── keyword_index.json              # Token/Keyword index for BM25 hybrid search
+│   └── state.json                      # Application persistent state tracker
 │
-├── 📁 frontend/
-│   ├── 📁 public/
-│   │   └── index.html                  # File HTML gốc
-│   ├── 📁 src/
-│   │   ├── 📁 api/
-│   │   │   └── index.js                # Các hàm gọi API đến backend
-│   │   ├── 📁 components/
-│   │   │   ├── ChatWindow.jsx          # Giao diện cửa sổ chat và tác vụ
-│   │   │   ├── DocumentList.jsx        # Giao diện danh sách tài liệu
-│   │   │   └── FileUploader.jsx        # Giao diện tải file
-│   │   ├── 📁 pages/
-│   │   │   └── MainPage.jsx            # Bố cục chính của trang
-│   │   ├── App.jsx                     # Component gốc
-│   │   └── index.js                    # Điểm vào của ứng dụng React
-│   ├── Dockerfile                      # <<-- Cấu hình Docker cho frontend
-│   ├── package.json                    # Quản lý các thư viện JavaScript
-│   └── tailwind.config.js              # Cấu hình cho Tailwind CSS
+├── frontend/                           # Client-side source code (ReactJS)
+│   ├── public/                         # Static Public Assets
+│   │   └── index.html                  # Root HTML template
+│   ├── src/                            # React Application Source
+│   │   ├── api/
+│   │   │   └── index.js                # Axios client configurations and API wrappers
+│   │   ├── components/                 # Reusable UI Components
+│   │   │   ├── ChatWindow.jsx          # Interactive chat and task interface
+│   │   │   ├── DocumentList.jsx        # Sidebar managing uploaded documents
+│   │   │   └── FileUploader.jsx        # Drag-and-drop document upload handler
+│   │   ├── pages/                      # Page Level Components
+│   │   │   └── MainPage.jsx            # Main dashboard structural layout
+│   │   ├── App.jsx                     # Root React Component orchestrating contexts/routes
+│   │   └── index.js                    # JavaScript application entry point
+│   ├── Dockerfile                      # Frontend standard Nginx Docker build
+│   ├── package.json                    # JS dependencies and NPM execution scripts
+│   └── tailwind.config.js              # Tailwind CSS utility framework configuration
 │
-├── .gitignore                          # Các file và thư mục bị bỏ qua bởi Git
-└── docker-compose.yml                  # <<-- File điều phối chạy cả backend và frontend
+├── .gitignore                          # Global rules for untracked files
+├── docker-compose.yml                  # Container orchestration network for the whole stack
+├── flow.md                             # You are here - Architectural directory insight
+└── README.md                           # Master project documentation
+```
